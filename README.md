@@ -16,7 +16,7 @@ If the url is valid the request is forwarded to the doPost which will invoke the
 
 The link will invoke the doGet which will display the desired info for the current user\thread.
 
-The doGet retrieves the info by accessing the global DB context parameter this is a critical section,
+The doGet retrieves the info by accessing the global DB context parameter this is a critical section which will be dealt with as follows.
 
 synchronized:
 
@@ -28,13 +28,15 @@ That is why the DB "init" function is synchronized.
 
 (there is no use of static because there is only a single instance of the DB).
 
-Since the counter is a resource being written into and read from, we might encounter a scenario where the resource is accessed
+The img counter-
 
-at the same time by the same thread once for updating the counter,
+Since the counter is a resource being written into and read from, a scenario where the resource is accessed
 
-and again at the same time for retrieving data which will result in returning inaccurate information.
+at the same time, by the same thread once for updating the counter,
 
-To deal with this issue we use synchronized on the get and set methods as well as the "init" function so set'r wont interfere with the get'r and vice versa.
+and again for retrieving data is possible and can result in returning inaccurate information.
+
+To deal with this issue synchronized is applied to the get and set methods as well as the "init" function so setr's wont interfere with getr's and vice versa.
 
 This will work because Java locks are reentrant.
 
