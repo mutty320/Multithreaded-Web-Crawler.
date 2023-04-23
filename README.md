@@ -20,7 +20,7 @@ The doGet retrieves the info by accessing the global DB context parameter this i
 
 synchronized:
 
-Im order to aviod race conditions or unexpected behavior when the DB is being being accessed simultaneously
+Im order to aviod race conditions or unexpected behavior when the DB is being accessed simultaneously
 
 by multiple threads, the DB "init" function is "synchronized".
 
@@ -28,11 +28,11 @@ by multiple threads, the DB "init" function is "synchronized".
 
 The img counter:
 
-Since the counter is a resource for read and write, a resource can be accessed
+The counter is a read and write resource, and as such it can be accessed
 
 at the same time, by the same thread once for updating the counter,
 
-and again for retrieving data that can result in getting inaccurate information.
+and again for retrieving its value, that can result in getting inaccurate information.
 
 To deal with this issue, synchronized is applied to the get and set methods as well
 
