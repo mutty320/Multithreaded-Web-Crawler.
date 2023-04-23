@@ -20,23 +20,23 @@ The doGet retrieves the info by accessing the global DB context parameter this i
 
 synchronized:
 
-A possible issue is, the DB being a global and shared resource being accessed simultaneously by multiple threads,
+Im order to aviod race conditions or unexpected behavior when the DB is being being accessed simultaneously
 
-this can result in a race condition or unexpected behavior.
-
-That is why the DB "init" function is synchronized.
+by multiple threads, the DB "init" function is "synchronized".
 
 (there is no use of static because there is only a single instance of the DB).
 
-The img counter-
+The img counter:
 
-Since the counter is a resource being written into and read from, a scenario where the resource is accessed
+Since the counter is a resource for read and write, a resource can be accessed
 
 at the same time, by the same thread once for updating the counter,
 
-and again for retrieving data is possible and can result in returning inaccurate information.
+and again for retrieving data that can result in getting inaccurate information.
 
-To deal with this issue synchronized is applied to the get and set methods as well as the "init" function so setr's wont interfere with getr's and vice versa.
+To deal with this issue, synchronized is applied to the get and set methods as well
+
+as the "init" function so setr's wont interfere with getr's and vice versa.
 
 This will work because Java locks are reentrant.
 
