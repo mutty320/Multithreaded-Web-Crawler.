@@ -6,7 +6,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 /**
- * we use this ContextListener in order to set 2 global attributes
+ * the ContextListener is used in order to set 2 global attributes
  * 1. the class "imgCounter" which controls the DB holding the info for each thread.
  * 2. the "maxDepth" parameter and initializes it to 2.
  */
